@@ -1,0 +1,13 @@
+.columnBorder {
+    border-right: 2px solid;
+    height: 300px;
+}
+
+.skill {
+    font-size: 20px;
+}
+
+.skillHeading {
+    color: #173b6c;
+    font-size: 40px;
+}

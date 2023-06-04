@@ -1,0 +1,18 @@
+.address,.phone,.email {
+    font-size: 18px;
+}
+.headerRow{
+    background: linear-gradient(143deg, rgb(3 133 216 / 66%) 13%, rgb(216 12 241 / 8%) 56%, rgb(255 226 0 / 39%) 82%);
+}
+
+.headerHorizontalLine {
+    opacity: 5;
+}
+
+.headerIcon {
+    font-size: 35px;
+}
+
+.Name {
+    font-size: 45px;
+}

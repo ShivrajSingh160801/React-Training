@@ -1,0 +1,28 @@
+.columnborder {
+    border-right: 2px solid;
+    height: 300px;
+}
+.certificate {
+    font-size: 20px;
+}
+
+.certificateHeading{
+    color: #173b6c;
+    font-size: 40px
+}
+
+/* 
+.certificateColumn {
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: left .5s cubic-bezier(0.820, 0.085, 0.395, 0.895);
+}
+
+.inactive {
+  left: -550px;
+}
+
+.inactive {
+  
+} */

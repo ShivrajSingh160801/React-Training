@@ -1,0 +1,15 @@
+export const requestModel = {
+  url: '',
+  method: '',
+  params: undefined,
+  data: '',
+  headers: undefined,
+  timeout: undefined,
+  withCredentials: undefined,
+  responseType: '',
+  responseEncoding: '',
+  xsrfCookieName: '',
+  xsrfHeaderName: '',
+  maxContentLength: undefined,
+  maxBodyLength: undefined,
+};
