@@ -18,7 +18,6 @@ const showErrorNotification = () => {
   });
 };
 
-
 // Create Post
 export const CreateUser = (userData) => {
   return async function (dispatch) {
@@ -50,10 +49,9 @@ export const CheckUser = (userData) => {
       const response = await Signin(userData);
       console.log('response: ', response?.data?.data);
       if (response?.data?.data && response?.success === true) {
-      
+
         localStorage.setItem('token', JSON.stringify(response?.data?.data?.token));
         localStorage.setItem('user', JSON.stringify(response?.data?.data?.GetUser));
-
 
         dispatch({
           type: userActions.LOGIN_USER_SUCCESS,
