@@ -42,7 +42,7 @@ const MyForm = () => {
       name="nest-messages"
       onFinish={onFinish}
       style={{
-        maxWidth: 600,
+        maxWidth: 500
       }}
       validateMessages={validateMessages}
     >
@@ -126,3 +126,8 @@ const MyForm = () => {
 };
 
 export default MyForm;
+
+
+
+
+
