@@ -6,15 +6,27 @@ import {
   EyeOutlined,
   EyeInvisibleOutlined,
 } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input} from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import { CheckUser } from "../redux/action/userAction";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import MyLoader from "./Loader";
 import SignUpDrawer from "./Drawer";
+import { errorMessage } from "../apiOps/apiResponse";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const currentPath = window.location.pathname;
+    if (token && currentPath === "/") {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -23,15 +35,17 @@ const SignInForm = () => {
   const onFinish = async (values) => {
     const formData = { email: values.email, password: values.password };
     try {
-      await dispatch(CheckUser(formData));
+      dispatch(CheckUser(formData)).then(() => {
+        navigate("/home");
+      });
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
     }
   };
-  
+
   return (
     <>
-     <MyLoader/>
+      <MyLoader />
       <div className="container">
         <div className="form-wrapper">
           <Form
@@ -83,10 +97,8 @@ const SignInForm = () => {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
-
               <a href="#">Forgot password</a>
             </Form.Item>
-
             <Form.Item>
               <Button
                 type="primary"
@@ -100,9 +112,7 @@ const SignInForm = () => {
           </Form>
         </div>
       </div>
-    
     </>
-   
   );
 };
 

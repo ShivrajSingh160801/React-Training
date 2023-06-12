@@ -9,3 +9,7 @@ export interface userSignin {
   email: string;
   password: string;
 }
+
+export interface supplier {
+  supplier : string;
+}

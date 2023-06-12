@@ -56,5 +56,78 @@ class userController {
       return res.status(500).json({ message: "Something went wrong", error });
     }
   }
+
+  async postSupplier(req: Request, res: Response){
+    console.log('req: ', req.body);
+    try {
+      let supplierData = req.body;
+      const Supplier = await userRepo.postSupplier(supplierData);
+      response.status = 200;
+      response.message = "Data Created Successfull";
+      response.data = { Supplier };
+      res.json(response);
+    } catch (error: any) {
+      console.log('error: ', error);
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+      res.json(response);
+    }
+  }
+
+  async postTableEntry(req: Request, res: Response){
+    try {
+      let TableEntryData = req.body;
+      const TableEntry = await userRepo.postTables(TableEntryData);
+      response.status = 200;
+      response.message = "Data Created Successfull";
+      response.data = { TableEntry };
+      res.json(response);
+    } catch (error: any) {
+      console.log('error: ', error);
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+      res.json(response);
+    }
+  }
+
+  async getTableEntry(req: Request, res: Response){
+  try {
+      const Tabledate = req.query.date?.toString();
+      console.log('Tabledate: ', Tabledate);
+      const TableEntry = await userRepo.getTable(Tabledate as string);
+      const response = {
+        status: 200,
+        message: "Data Fetched Successfully",
+        data: { TableEntry }
+      };
+      res.json(response);
+    } catch (error: any) {
+      console.log('error: ', error);
+      const response = {
+        status: 500,
+        message: error,
+        data: null
+      };
+      res.json(response);
+    }
+  }
+  
+
+  async getSupllier(req: Request, res: Response){
+    try {
+      const Suppliers = await userRepo.getSupplier();
+      response.status = 200;
+      response.message = "Data Created Successfull";
+      response.data = { Suppliers };
+      res.json(response);
+    } catch (error: any) {
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+      res.json(response);
+    }
+  }
 }
 export default new userController();

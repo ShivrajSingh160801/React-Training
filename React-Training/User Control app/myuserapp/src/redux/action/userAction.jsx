@@ -1,12 +1,13 @@
 import { userActions } from "../actionType";
 import { Signup, Signin } from "../../apiOps/userApiMethods";
 import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const showSuccessNotification = () => {
   notification.success({
     message: "Login Successful",
     description: "User Logged In Successfully",
-    placement:"top"
+    placement: "top"
   });
 };
 
@@ -14,12 +15,11 @@ const showErrorNotification = () => {
   notification.error({
     message: "Error",
     description: "Error Logging In",
-    placement:"top"
+    placement: "top"
   });
 };
 
-// Create Post
-export const CreateUser = (userData) => {
+const CreateUser = (userData) => {
   return async function (dispatch) {
     try {
       const response = await Signup(userData);
@@ -43,16 +43,15 @@ export const CreateUser = (userData) => {
   };
 };
 
-export const CheckUser = (userData) => {
+
+const CheckUser = (userData) => {
   return async function (dispatch) {
     try {
       const response = await Signin(userData);
       console.log('response: ', response?.data?.data);
       if (response?.data?.data && response?.success === true) {
-
         localStorage.setItem('token', JSON.stringify(response?.data?.data?.token));
         localStorage.setItem('user', JSON.stringify(response?.data?.data?.GetUser));
-
         dispatch({
           type: userActions.LOGIN_USER_SUCCESS,
           payload: response.data,
@@ -61,7 +60,7 @@ export const CheckUser = (userData) => {
       } else {
         dispatch({
           type: userActions.LOGIN_USER_FAILED,
-          payload: "User Login failed.",
+          payload: 'User Login failed.',
         });
         showErrorNotification();
       }
@@ -73,9 +72,9 @@ export const CheckUser = (userData) => {
       showErrorNotification();
     }
   };
+
 };
 
 
 
-
-
+export { CreateUser, CheckUser };

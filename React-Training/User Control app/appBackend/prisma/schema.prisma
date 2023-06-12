@@ -17,3 +17,14 @@ model users {
   password String
   phone    String
 }
+
+model tabledata {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  date      String @unique
+  tableData Json
+}
+
+model supplier {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  supplier String
+}
