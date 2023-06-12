@@ -21,6 +21,16 @@ class userRepo {
     return TableEntry;
   }
   
+  async updateTables(date : string,TableData :any) {
+    const UpdatedTable = await prisma.tabledata.update({
+      where : {
+        date : date
+      },
+      data : TableData
+    });
+    return UpdatedTable;
+  }
+
   async getTable(date: string) {
     console.log('repo date: ',typeof date);
     const Supplier = await prisma.tabledata.findUnique({

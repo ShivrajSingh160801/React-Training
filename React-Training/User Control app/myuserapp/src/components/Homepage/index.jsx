@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import logo from "../../../src/pngwing.com.png";
-import { UserOutlined } from "@ant-design/icons";
-import { LogoutOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import MonthPickerWithLastDate from "./Datepicker";
-import EditableTable from "./Table";
+import NewTable from "./Table";
+import GetTable from "./GetTableByAPi"; // Assuming you have a GetTable component
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    const parsedUser = JSON.parse(user);
+    let email = parsedUser.email;
+    console.log('email: ', email);
+
     const currentPath = window.location.pathname;
     if (!token) {
       navigate("/");
@@ -22,29 +28,31 @@ const Navbar = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [tableData, setTableData] = useState([]);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    // Make an API call or perform any other necessary operations
-    // to fetch the table data based on the selected date
-    const tableData = fetchTableData(date); // Replace fetchTableData with your actual function
-    setTableData(tableData);
+  const fetchTableData = async (date) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/user/getTable?date=${date}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to fetch table data");
+    }
   };
 
-  // Placeholder function for fetching table data
-  const fetchTableData = (date) => {
-    // Replace this with your actual implementation to fetch the table data
-    // based on the selected date
-    return [
-      // Example data
-      { id: 1, name: "John", age: 30 },
-      { id: 2, name: "Jane", age: 25 },
-      // ...
-    ];
+  const handleDateChange = async (date) => {
+    setSelectedDate(date);
+    try {
+      const tableData = await fetchTableData(date); // Wait for the API call to complete
+      setTableData(tableData);
+      console.log('tableData: ', tableData);
+    } catch (error) {
+      console.error("Error fetching table data:", error);
+    }
   };
 
   return (
     <>
-  <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand ps-4" href="#">
             <img src={logo} width={"200px"} height={"45px"} alt="Logo" />
@@ -98,30 +106,17 @@ const Navbar = () => {
       <section className="mt-3">
         <div className="row">
           <MonthPickerWithLastDate onDateChange={handleDateChange} />
-          <div className="col-md-6">
-            <div className="row">
-              <div className="col">
-                <button className="button button-primary">Hello</button>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <button className="button button-primary">Hello</button>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <button className="button button-primary">Hello</button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
-      {selectedDate && (
+      {selectedDate ? (
         <section className="mt-3">
-          <EditableTable selectedDate={selectedDate} tableData={tableData} />
+          {tableData.data?.TableEntry !== null ? (
+            <GetTable selectedDate={selectedDate} tableData={tableData?.data?.TableEntry} />
+          ) : (
+            <NewTable selectedDate={selectedDate} />
+          )}
         </section>
-      )}
+      ) : null}
     </>
   );
 };

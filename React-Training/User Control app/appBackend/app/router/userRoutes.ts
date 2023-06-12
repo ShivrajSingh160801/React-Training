@@ -11,6 +11,7 @@ route.get('/getSupplier',userController.getSupllier)
 route.post('/postSupplier',userController.postSupplier)
 route.post('/postTable',userController.postTableEntry)
 route.get('/getTable',userController.getTableEntry)
+route.put('/putTable',userController.updateTableEntry)
 
 // route.get('/getuser',authenticateJWT,studentController.getuser)
 

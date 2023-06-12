@@ -114,6 +114,28 @@ class userController {
     }
   }
   
+  async updateTableEntry(req: Request, res: Response){
+    try {
+      const Tabledate = req.query.date?.toString();
+      const TableData =req.body;
+      const TableEntry = await userRepo.updateTables(Tabledate as string,TableData);
+      console.log('TableEntry: ', TableEntry);
+      const response = {
+        status: 200,
+        message: "Data updated Successfully",
+        data: { TableEntry }
+      };
+      res.json(response);
+    } catch (error: any) {
+      console.log('error: ', error);
+      const response = {
+        status: 500,
+        message: error,
+        data: null
+      };
+      res.json(response);
+    }
+  }
 
   async getSupllier(req: Request, res: Response){
     try {
