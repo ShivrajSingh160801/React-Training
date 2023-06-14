@@ -69,7 +69,8 @@ const SignUp = () => {
           rules={[
             {
               required: true,
-              message: "Please input your phone number!",
+              pattern : /^[6-9]\d{9}$/,
+              message: "Please input your 10 digit phone numbers starting from [6-9]",
             },
           ]}
         >

@@ -76,7 +76,7 @@ const SignInForm = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please enter your password",
+                  message: "Please enter your password  eg:Pass1234",
                   pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
                 },
               ]}

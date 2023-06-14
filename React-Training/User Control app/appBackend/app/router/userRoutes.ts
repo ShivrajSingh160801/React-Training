@@ -6,6 +6,7 @@ import valid from "../middleware/valid"
 const route = express.Router();
 
 route.post('/post',valid,userController.post)
+route.put('/put',valid,userController.updateUser)
 route.post('/login',valid,userController.loginCheck)
 route.get('/getSupplier',userController.getSupllier)
 route.post('/postSupplier',userController.postSupplier)

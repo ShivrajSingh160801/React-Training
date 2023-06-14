@@ -28,6 +28,27 @@ class userController {
     }
   }
 
+  async updateUser(req: Request, res: Response) {
+    try {
+      const id = req.query.id?.toString();
+      let { name, phone } = req.body;
+      let userData = {
+        name,
+        phone
+      };
+      const user = await userRepo.putUser(id as string, userData);
+      response.status = 200;
+      response.message = "Data Updated Successfull";
+      response.data = { user };
+      res.json(response);
+    } catch (error: any) {
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+      res.json(response);
+    }
+  }
+
   async loginCheck(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
@@ -57,8 +78,8 @@ class userController {
     }
   }
 
-  async postSupplier(req: Request, res: Response){
-    console.log('req: ', req.body);
+  async postSupplier(req: Request, res: Response) {
+    console.log("req: ", req.body);
     try {
       let supplierData = req.body;
       const Supplier = await userRepo.postSupplier(supplierData);
@@ -67,7 +88,7 @@ class userController {
       response.data = { Supplier };
       res.json(response);
     } catch (error: any) {
-      console.log('error: ', error);
+      console.log("error: ", error);
       response.status = 500;
       response.message = error;
       response.data = null;
@@ -75,69 +96,96 @@ class userController {
     }
   }
 
-  async postTableEntry(req: Request, res: Response){
+  async postTableEntry(req: Request, res: Response) {
     try {
       let TableEntryData = req.body;
-      const TableEntry = await userRepo.postTables(TableEntryData);
-      response.status = 200;
-      response.message = "Data Created Successfull";
-      response.data = { TableEntry };
-      res.json(response);
-    } catch (error: any) {
-      console.log('error: ', error);
-      response.status = 500;
-      response.message = error;
-      response.data = null;
-      res.json(response);
-    }
-  }
-
-  async getTableEntry(req: Request, res: Response){
-  try {
+      console.log('TableEntryData: ', TableEntryData);
       const Tabledate = req.query.date?.toString();
       console.log('Tabledate: ', Tabledate);
-      const TableEntry = await userRepo.getTable(Tabledate as string);
-      const response = {
-        status: 200,
-        message: "Data Fetched Successfully",
-        data: { TableEntry }
-      };
-      res.json(response);
+
+      const GetTableEntry = await userRepo.getTable(Tabledate as string);
+      console.log('GetTableEntry: ', GetTableEntry);
+      
+      if (GetTableEntry) {
+        // Date exists, call updateTableEntry function
+        const TableEntry = await userRepo.updateTables(Tabledate as string, TableEntryData);
+        const response = {
+          status: 200,
+          message: "Data updated Successfully",
+          data: { TableEntry },
+        };
+        res.json(response);
+      } else {
+        // Date does not exist, call postTables function
+        const TableEntry = await userRepo.postTables(TableEntryData);
+        const response = {
+          status: 200,
+          message: "Data Created Successfully",
+          data: { TableEntry },
+        };
+        res.json(response);
+      }
     } catch (error: any) {
-      console.log('error: ', error);
+      console.log("error: ", error);
       const response = {
         status: 500,
         message: error,
-        data: null
+        data: null,
       };
       res.json(response);
     }
   }
   
-  async updateTableEntry(req: Request, res: Response){
+
+  async getTableEntry(req: Request, res: Response) {
     try {
       const Tabledate = req.query.date?.toString();
-      const TableData =req.body;
-      const TableEntry = await userRepo.updateTables(Tabledate as string,TableData);
-      console.log('TableEntry: ', TableEntry);
+      console.log("Tabledate: ", Tabledate);
+      const TableEntry = await userRepo.getTable(Tabledate as string);
       const response = {
         status: 200,
-        message: "Data updated Successfully",
-        data: { TableEntry }
+        message: "Data Fetched Successfully",
+        data: { TableEntry },
       };
       res.json(response);
     } catch (error: any) {
-      console.log('error: ', error);
+      console.log("error: ", error);
       const response = {
         status: 500,
         message: error,
-        data: null
+        data: null,
       };
       res.json(response);
     }
   }
 
-  async getSupllier(req: Request, res: Response){
+  async updateTableEntry(req: Request, res: Response) {
+    try {
+      const Tabledate = req.query.date?.toString();
+      const TableData = req.body;
+      const TableEntry = await userRepo.updateTables(
+        Tabledate as string,
+        TableData
+      );
+      console.log("TableEntry: ", TableEntry);
+      const response = {
+        status: 200,
+        message: "Data updated Successfully",
+        data: { TableEntry },
+      };
+      res.json(response);
+    } catch (error: any) {
+      console.log("error: ", error);
+      const response = {
+        status: 500,
+        message: error,
+        data: null,
+      };
+      res.json(response);
+    }
+  }
+
+  async getSupllier(req: Request, res: Response) {
     try {
       const Suppliers = await userRepo.getSupplier();
       response.status = 200;

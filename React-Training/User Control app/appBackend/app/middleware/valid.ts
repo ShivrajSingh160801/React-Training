@@ -11,15 +11,15 @@ function validateSignupData(req: Request, res: Response, next: NextFunction) {
     return res.status(400).json({ error: "Invalid Phone Number" });
   }
 
-  if (!Validator.validateEmail(email)) {
+  if (email && !Validator.validateEmail(email)) {
     return res.status(400).json({ error: "Invalid email" });
   }
 
-  if (!Validator.validatePassword(password)) {
+  if (password && !Validator.validatePassword(password)) {
     return res.status(400).json({ error: "Invalid password! Error: Password must contain at least one digit, one lowercase letter, one uppercase letter, and be at least 8 characters long." });
   }
 
-  if (!Validator.validateName(name)) {
+  if (name && !Validator.validateName(name)) {
     return res.status(400).json({ error: "Invalid Name" });
   }
 
