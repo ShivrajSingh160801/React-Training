@@ -22,6 +22,7 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const onFinish = (values) => {
+  
   // Send the form data to the API
   axios
     .post("http://localhost:3001/form/post", values?.user)
@@ -181,15 +182,15 @@ const App = () => {
           <Form.Item label="Dragger" name={["user", "file"]}>
             <Upload.Dragger
               multiple
-              accept=".pdf"
+              accept=".png"
               listType="picture"
               beforeUpload={(file) => {
-                const isSizeValid = ((file.size / 1024 )/ 1024) < 10; // Check if file size is less than 10 MB
-                if (!isSizeValid) {
-                  // Display an error message or handle the validation failure as per your requirements
-                  console.log("File size exceeds the limit of 10 MB");
-                }
-                return isSizeValid; // Return false to prevent uploading if file size exceeds the limit
+                // const isSizeValid = ((file.size / 1024 )/ 1024) < 10; // Check if file size is less than 10 MB
+                // if (!isSizeValid) {
+                //   // Display an error message or handle the validation failure as per your requirements
+                //   console.log("File size exceeds the limit of 10 MB");
+                // }
+                // return isSizeValid; // Return false to prevent uploading if file size exceeds the limit
               }}
             >
               <p className="ant-upload-drag-icon">

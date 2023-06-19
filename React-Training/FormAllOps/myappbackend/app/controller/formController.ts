@@ -5,6 +5,7 @@ import formRepo from "../repository/formUserRepo";
 let response = new responsemodel();
 class formController {
   async post(req: Request, res: Response) {
+    console.log("req: ", req.body);
     try {
       const {
         password,
@@ -17,7 +18,7 @@ class formController {
         checkbox,
         color,
         file,
-        slider
+        slider,
       } = req.body;
 
       const user = {
@@ -26,23 +27,35 @@ class formController {
         email,
         gender,
         dateTime,
-        number,
+        number: parseInt(number),
         radio,
         checkbox,
         color,
         file,
-        slider
+        slider: parseInt(slider),
       };
+      if (req.file) {
+        user.file = req.file.path;
+        console.log('user.file: ', user.file);
+      }
+      console.log("user: ", user);
       const postLibrary = await formRepo.post(user);
-      response.status = 200;
-      response.message = "Data Posted Successfull";
-      response.data = postLibrary;
+
+      const response = {
+        status: 200,
+        message: "Data Posted Successfully",
+        data: postLibrary,
+      };
+
       res.json(response);
     } catch (error: any) {
       console.log(error);
-      response.status = 500;
-      response.message = error;
-      response.data = null;
+      const response = {
+        status: 500,
+        message: error,
+        data: null,
+      };
+
       res.json(response);
     }
   }
