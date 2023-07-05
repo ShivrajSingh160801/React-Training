@@ -9,5 +9,6 @@ router.post('/post',validateData,Upload.single('image'),productController.post)
 router.post('/categorypost',productController.CategoryPost)
 router.get('/getCategory',productController.GetCategory)
 router.get('/getProduct',productController.GetProduct)
+router.get('/getProductonSearch',productController.GetProductWithParams)
 
 export default router;

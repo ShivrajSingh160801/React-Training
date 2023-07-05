@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
-import { Table, Switch, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Switch } from "antd";
+import axios from "axios";
 
 const App = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState("");
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API
     fetch("http://localhost:3001/product/getProduct")
       .then((response) => response.json())
       .then((responseData) => {
-        // Set the API response data in the state
         setData(responseData.data);
       })
       .catch((error) => {
@@ -23,14 +21,40 @@ const App = () => {
 
   const handleSwitchChange = (checked) => {
     setSortOrder(checked ? "desc" : "asc");
+    handleSearch();
+  };
+
+  const handleSearchValueChange = (e) => {
+    setSearchValue(e.target.value);
+    handleSearch();
+  };
+
+  const handlePageNumberChange = (e) => {
+    setPageNumber(e.target.value);
   };
 
   const handleSearch = () => {
-    
     console.log("Search Value:", searchValue);
     console.log("Page Number:", pageNumber);
     console.log("Sort Order:", sortOrder);
-    
+
+    axios
+      .get("http://localhost:3001/product/getProductonSearch", {
+        params: {
+          searchValue: searchValue,
+          pageNumber: pageNumber,
+          sortOrder: sortOrder,
+        },
+      })
+      .then((response) => {
+        // Handle the response here
+        console.log(response.data.data);
+        setData(response?.data?.data);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.log(error);
+      });
   };
 
   const columns = [
@@ -44,7 +68,7 @@ const App = () => {
     },
     {
       title: "Image",
-      dataIndex: "image",
+      dataIndex: "  ",
       render: (text, record) => (
         <img
           src={`http://localhost:3001/${record.image}`}
@@ -64,17 +88,17 @@ const App = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid d-flex justify-content-center">
           <form className="d-flex">
-            <input  
+            <input
               className="form-control me-3"
               type="number"
               placeholder="Enter Page Number"
               aria-label="Page"
               value={pageNumber}
-              onChange={(e) => setPageNumber(e.target.value)}
+              onChange={handlePageNumberChange}
             />
             <Switch
               style={{
-                width : '300px'
+                width: "300px",
               }}
               checkedChildren="Descending"
               unCheckedChildren="Ascending"
@@ -87,7 +111,7 @@ const App = () => {
               placeholder="Search"
               aria-label="Search"
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={handleSearchValueChange}
             />
             <button
               className="btn btn-outline-success"
@@ -106,3 +130,4 @@ const App = () => {
 };
 
 export default App;
+    

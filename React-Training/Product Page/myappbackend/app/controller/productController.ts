@@ -88,10 +88,13 @@ class productController {
 
   async GetProductWithParams(req: Request, res: Response) {
     try {
-    let searchValue = req?.params?.searchValue;
-    let pageNumber = req?.params?.pageNumber;
-    let sortOrder = req?.params?.sortOrder
-      const Products = await productRepo.getProduct();
+      let searchValue = req?.query?.searchValue ;
+      console.log('searchValue: ', searchValue);
+      let pageNumber = req?.query?.pageNumber;
+      let sortOrder = req?.query?.sortOrder || 'asc';
+      console.log('sortOrder: ', sortOrder);
+      
+      const Products = await productRepo.getProductWithParams(searchValue as string,sortOrder as any,pageNumber as any);
       response.status = 200;
       response.message = "Products Fetched Successfully";
       response.data = Products;

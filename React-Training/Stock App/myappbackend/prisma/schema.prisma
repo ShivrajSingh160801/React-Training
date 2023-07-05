@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model customer {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  customername String
+  stock        stock  @relation(fields: [stockId], references: [id])
+  orderqty     Int
+  stockId      String @db.ObjectId
+}
+
+model stock {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  stockname    String     @unique
+  quantity     Int
+  stockordered Int
+  customers    customer[]
+}
