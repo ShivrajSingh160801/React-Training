@@ -1,11 +1,20 @@
 import React from "react";
-import { Col, Row, Image, Typography, Form, Input, InputNumber } from "antd";
+import {
+  Col,
+  Row,
+  Image,
+  Typography,
+  Form,
+  Input,
+  Button
+} from "antd";
 import { useForm } from "antd/lib/form/Form";
 import loginImage from "../../images/Group 23.svg";
 import animalPlanetLogo from "../../images/Mask Group 1/Mask Group 1.png";
 import userLogo from "../../images/Group 57/Group 57.png";
 import emailLogo from "../../images/Group 59/Group 59.png";
 import phoneLogo from "../../images/phone_in_talk_FILL0_wght400_GRAD0_opsz48/phone_in_talk_FILL0_wght400_GRAD0_opsz48.png";
+import passwordLogo from "../../images/Group 27.svg";
 
 import "./index.css";
 
@@ -30,7 +39,11 @@ const App: React.FC = () => {
             }}
           >
             <Col xs={24} sm={24} md={24}>
-              <Image src={animalPlanetLogo} alt="" />
+              <Image
+                src={animalPlanetLogo}
+                alt=""
+                style={{ float: "left", marginRight: "10px" }}
+              />
             </Col>
             <Col xs={24} sm={24} md={24}>
               <div>
@@ -56,7 +69,16 @@ const App: React.FC = () => {
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="firstName"
-                        label="FirstName*"
+                        label={
+                          <span>
+                            <Image
+                              src={userLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            FirstName*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
@@ -70,7 +92,16 @@ const App: React.FC = () => {
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="lastName"
-                        label="LastName*"
+                        label={
+                          <span>
+                            <Image
+                              src={userLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            LastName*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
@@ -86,21 +117,39 @@ const App: React.FC = () => {
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="email"
-                        label="Email Address*"
+                        label={
+                          <span>
+                            <Image
+                              src={emailLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            Email Address*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
                       >
                         <Input
                           size="large"
-                          placeholder="Enter your First Name"
+                          placeholder="Enter your Email Address"
                         />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="phone"
-                        label="Phone Number*"
+                        label={
+                          <span>
+                            <Image
+                              src={phoneLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            Phone Number*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
@@ -118,7 +167,16 @@ const App: React.FC = () => {
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="password"
-                        label="Password"
+                        label={
+                          <span>
+                            <Image
+                              src={passwordLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            Password*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
@@ -138,7 +196,16 @@ const App: React.FC = () => {
                     <Col xs={24} sm={9}>
                       <Form.Item
                         name="confirm"
-                        label="Confirm Password"
+                        label={
+                          <span>
+                            <Image
+                              src={passwordLogo}
+                              alt=""
+                              style={{ paddingRight: "5px" }}
+                            />
+                            Re-Enter Password*
+                          </span>
+                        }
                         style={{
                           fontSize: "16px",
                         }}
@@ -158,7 +225,7 @@ const App: React.FC = () => {
                               }
                               return Promise.reject(
                                 new Error(
-                                  "The new password that you entered do not match!"
+                                  "The new password that you entered does not match!"
                                 )
                               );
                             },
@@ -169,6 +236,63 @@ const App: React.FC = () => {
                           size="large"
                           placeholder="Confirm your password"
                         />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={[40, 0]}>
+                    <Col xs={24} sm={9} md={18}>
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          size="large"
+                          style={{ width: "100%" }}
+                        >
+                          Register
+                        </Button>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={[40, 0]}>
+                    <Col md={12} offset={4} xs={24} sm={9}>
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          size="large"
+                          style={{
+                            marginRight: "5px",
+                          }}
+                        >
+                          Sign in with Intuit
+                        </Button>
+                        <Button
+                          size="large"
+                          style={{
+                            backgroundColor: "#0B78C2",
+                            color: "white",
+                            marginLeft: "5px",
+                          }}
+                        >
+                          Sign in with Xero
+                        </Button>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={[40, 0]}>
+                    <Col
+                      style={{
+                        display: "flex",
+                      }}
+                    >
+                      <Form.Item>
+                        <Button type="text" block>
+                          Already have an account?
+                          <span>
+                            <Button type="link" block>
+                              Login Now!
+                            </Button>
+                          </span>
+                        </Button>
                       </Form.Item>
                     </Col>
                   </Row>
