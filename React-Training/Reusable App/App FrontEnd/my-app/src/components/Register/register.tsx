@@ -16,11 +16,11 @@ import emailLogo from "../../images/Group 59/Group 59.png";
 import phoneLogo from "../../images/phone_in_talk_FILL0_wght400_GRAD0_opsz48/phone_in_talk_FILL0_wght400_GRAD0_opsz48.png";
 import passwordLogo from "../../images/Group 27.svg";
 
-import "./index.css";
+import "./register.css";
 
 const { Title } = Typography;
 
-const App: React.FC = () => {
+const Register: React.FC = () => {
   const [form] = useForm(); // Declare the 'form' variable using 'useForm' hook
 
   return (
@@ -306,4 +306,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Register;

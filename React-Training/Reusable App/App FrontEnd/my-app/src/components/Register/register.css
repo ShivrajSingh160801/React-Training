@@ -1,0 +1,12 @@
+.loginImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c9dbf3;
+    height: 100vh;
+    width: 100vw;
+}
+
+* {
+    font-family: 'Lexend', sans-serif !important;
+}
