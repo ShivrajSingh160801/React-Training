@@ -1,0 +1,10 @@
+
+ .ant-pagination-item a,
+ .ant-pagination-item:hover a,
+ .ant-pagination-item-active a {
+  color: black !important; /* Set the font color to black */
+}
+
+.ant-switch-checked{
+    background-color: green !important;
+}

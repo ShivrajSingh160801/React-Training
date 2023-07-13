@@ -1,0 +1,22 @@
+.preferences {
+    &__preference {
+      display: inline-grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 50%;
+    }
+  
+    &__card {
+      width: 100%;
+      margin-bottom: 20px;
+  
+      &__button {
+        display: flex;
+        margin-bottom: 3rem;
+        gap: 0.5rem;
+        align-items: center;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+

@@ -1,0 +1,19 @@
+.ant-menu-item {
+  border-left: 3px solid transparent;
+  border-radius: 0px !important;
+}
+
+.ant-menu-item:hover {
+  background-color: rgb(239, 247, 255) !important;
+  border-radius: 0px !important;
+  color: black !important;
+  border-left: 3px solid rgb(0, 140, 255) !important;
+}
+
+.ant-menu-item-selected {
+  background-color: rgb(239, 247, 255) !important;
+  border-radius: 0px !important;
+  color: black !important;
+  border-left: 3px solid rgb(0, 140, 255) !important;
+}
+
