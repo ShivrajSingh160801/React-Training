@@ -5,21 +5,22 @@ import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export interface DataType {
-  key: number;
+  key: string;
   name: string;
   email: string;
   phone: string;
-  address: string;
-  status: boolean;
+  address: string
+  status : boolean
 }
 
 let StatusValue = true;
 
 const onChange = (checked: boolean) => {
-  console.log(`switch to ${checked}`);
-  // StatusValue = checked;
-  // console.log('StatusValue: ', StatusValue);
+  console.log(`switch to ${ checked}`);
+  StatusValue = checked;
+  console.log('StatusValue: ', StatusValue);
 };
+
 
 export const Usercolumns: ColumnsType<DataType> = [
   {
@@ -49,17 +50,15 @@ export const Usercolumns: ColumnsType<DataType> = [
   {
     title: "Status",
     key: "status",
-    render: (_, record) => {
-      console.log("_record::>",record,_)
-      return (
-        <>
-          <Switch onChange={onChange} />
-          <span style={{ marginLeft: 8 }}>
-            {StatusValue === true ? "Active" : "Inactive"}
-          </span>
-        </>
-      );
-    },
+    render: (_, record) => (
+      <>
+        <Switch onChange={onChange}  />
+        <span style={{ marginLeft: 8 }}>
+          {StatusValue === true ? "Active" : "Inactive"}
+        
+        </span>
+      </>
+    ),
   },
   {
     title: "Action",
@@ -87,31 +86,30 @@ export const Usercolumns: ColumnsType<DataType> = [
   },
 ];
 
+
 export const Userdata: DataType[] = [
   {
+    key: "1",
     name: "John Brown",
     email: "john@example.com",
     phone: "1234567890",
     address: "New York No. 1 Lake Park",
-    status: false,
+    status : StatusValue
   },
   {
+    key: "2",
     name: "Jim Green",
     email: "jim@example.com",
     phone: "0987654321",
     address: "London No. 1 Lake Park",
-    status: false,
+    status : StatusValue
   },
   {
+    key: "3",
     name: "Joe Black",
     email: "joe@example.com",
     phone: "9876543210",
     address: "Sydney No. 1 Lake Park",
-    status: false,
+     status : StatusValue
   },
-].map((d,i)=>{
-  return{
-    ...d,
-    key:i
-  }
-})
+];

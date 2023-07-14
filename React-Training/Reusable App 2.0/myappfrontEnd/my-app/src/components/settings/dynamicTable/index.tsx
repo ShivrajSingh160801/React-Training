@@ -1,11 +1,18 @@
 import React from "react";
-import { Space, Table, Switch } from "antd";
+import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { columns, data } from "../../../constants/userData/index";
 import "./index.css";
 
-const DynamicTable: React.FC = () => (
+interface DynamicTableProps {
+  columns: ColumnsType<any>; // Update the type based on your column data structure
+  data: any[]; // Update the type based on your data structure
+}
+
+
+const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data }) => (
+
+  
   <Table
     style={{
       paddingTop: "35px",
