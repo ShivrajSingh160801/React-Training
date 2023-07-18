@@ -1,34 +1,64 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Typography } from "antd";
+import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Col, Drawer, Row, Typography } from "antd";
 import styles from "./index.module.scss";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { AddInfoProps } from "./types";
+import UserForm from "../Forms/addUser";
+import OrgForm from "../Forms/addOrg";
 
 const { Title, Link } = Typography;
 
-// For do something to table section
 const AddInfo: FC<AddInfoProps> = (props) => {
-  // Inits
   const { title, addInfo } = props;
+  const [drawerVisible, setDrawerVisible] = useState(false);
 
-  // Get capitalize title
-  const GetTitle = () => {
-    return <>{title.charAt(0).toUpperCase() + title.slice(1)}</>;
+  const showDrawer = () => {
+    setDrawerVisible(true);
   };
 
-  // JSX
+  const onCloseDrawer = () => {
+    setDrawerVisible(false);
+  };
+
+  const getDrawerContent = () => {
+    if (title === "users") {
+      return <UserForm />;
+    } else if (title === "organizations") {
+      return <OrgForm/>;
+    } else {
+      return <p>Add Role Form</p>;
+    }
+  };
+
+  const GetTitle = () => {
+    return (
+      <>
+        <span>{title.charAt(0).toUpperCase() + title.slice(1)}</span>
+      </>
+    );
+  };
+
+  const ButtonTitle = () => {
+    return (
+      <>
+        <span>{"Add " + title.charAt(0).toUpperCase() + title.slice(1)}</span>
+      </>
+    );
+  };
+
   return (
     <div className={styles["add-info"]}>
       <Row
         className={styles["add-info__wrapper"]}
-        justify={"space-between"}
-        align={"middle"}
+        justify="space-between"
+        align="middle"
       >
         <Col>
           <Title level={4}>
-            <GetTitle />{" "}
+            <GetTitle />
             {title === "integrations" && (
               <>
+                {" "}
                 | <Link>View Active Connections (0)</Link>
               </>
             )}
@@ -36,12 +66,38 @@ const AddInfo: FC<AddInfoProps> = (props) => {
         </Col>
         <Col>
           {addInfo && (
-            <Button type="primary" size="large" icon={<PlusOutlined />}>
-              Add User
+            <Button
+              type="primary"
+              size="large"
+              icon={<PlusOutlined />}
+              onClick={showDrawer}
+            >
+              {title === "users"
+                ? "Add User"
+                : title === "organizations"
+                ? "Add Organization"
+                : "Add Role"}
             </Button>
           )}
         </Col>
       </Row>
+      <Drawer
+        title={<ButtonTitle />}
+        placement="right"
+        visible={drawerVisible}
+        onClose={onCloseDrawer}
+        size="large"
+        closable={false}
+        extra={
+          <div>
+            <CloseOutlined
+              onClick={onCloseDrawer}
+            />
+          </div>
+        }
+      >
+        {getDrawerContent()}
+      </Drawer>
     </div>
   );
 };

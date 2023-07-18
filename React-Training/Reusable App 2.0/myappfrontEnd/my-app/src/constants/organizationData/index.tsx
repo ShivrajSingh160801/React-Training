@@ -1,8 +1,7 @@
-// columns.ts
 import React from "react";
-import { Space, Table, Switch } from "antd";
+import { Space, Table, Switch, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 export interface DataType {
   key: string;
@@ -24,27 +23,31 @@ export const orgcolumns: ColumnsType<DataType> = [
     title: "Email Address",
     dataIndex: "emailAddress",
     key: "emailAddress",
-
   },
   {
     title: "Phone Number",
     dataIndex: "phoneNumber",
     key: "phoneNumber",
-   
   },
   {
     title: "Created On",
     dataIndex: "createdOn",
     key: "createdOn",
- 
   },
   {
     title: "Status",
     key: "status",
     render: (_, record) => (
       <>
-        <Switch checked={record.status === "Active"} />
-        <span style={{ marginLeft: 8 }}>Active</span>
+        {record.status === "Active" ? (
+          <Button type="primary" icon={<CheckOutlined />} style={{ backgroundColor: "white", color: "green",boxShadow:"none" }}>
+            Active
+          </Button>
+        ) : (
+          <Button type="primary" icon={<CloseOutlined />} style={{ backgroundColor: "white", color: "red" ,boxShadow:"none"}}>
+            Inactive
+          </Button>
+        )}
       </>
     ),
   },
@@ -73,7 +76,6 @@ export const orgcolumns: ColumnsType<DataType> = [
     ),
   },
 ];
-
 
 export const Orgdata: DataType[] = [
   {

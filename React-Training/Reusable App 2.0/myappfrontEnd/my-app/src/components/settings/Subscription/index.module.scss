@@ -1,0 +1,13 @@
+.subscription {
+    &__logoLabelRow {
+      display: flex;
+      align-items: center;
+    }
+    &__card {
+      width: 35%;
+    }
+    &__label {
+      margin-top: 0.6em;
+    }
+  }
+  

@@ -13,6 +13,9 @@ import { Row, Col, Switch, Space } from "antd";
 import styles from "./index.module.scss";
 import { ColumnsType } from "antd/es/table";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { RolesData, Rolescolumns } from "../../constants/rolesdata";
+import SubscriptionCard from "../../components/settings/Subscription";
+import { subscriptionData } from "../../constants/subscriptionData";
 
 const SettingsPage = () => {
   const [settingComponent, setSettingComponent] = useState("users");
@@ -27,7 +30,7 @@ const SettingsPage = () => {
   const getAdd = () => {
     if (
       settingComponent === "users" ||
-      settingComponent === "organization" ||
+      settingComponent === "organizations" ||
       settingComponent === "roles"
     ) {
       return true;
@@ -36,7 +39,6 @@ const SettingsPage = () => {
     }
   };
 
-  
   const Usercolumns: ColumnsType<DataType> = [
     {
       title: "Name",
@@ -84,7 +86,7 @@ const SettingsPage = () => {
               }
             />
             <span style={{ marginLeft: 8 }}>
-              { _.status === true ? "Active" : "Inactive"}
+              {_.status === true ? "Active" : "Inactive"}
             </span>
           </>
         );
@@ -116,7 +118,6 @@ const SettingsPage = () => {
     },
   ];
 
-
   useEffect(() => {
     console.log("userData: ", userData);
   }, [userData]);
@@ -131,6 +132,10 @@ const SettingsPage = () => {
 
           {settingComponent === "organizations" && (
             <DynamicTable data={Orgdata} columns={orgcolumns} />
+          )}
+
+          {settingComponent === "roles" && (
+            <DynamicTable data={RolesData} columns={Rolescolumns} />
           )}
 
           {settingComponent === "integrations" && (
@@ -166,6 +171,16 @@ const SettingsPage = () => {
                 <React.Fragment key={index}>
                   <PreferenceCard preference={preference} />
                 </React.Fragment>
+              ))}
+            </div>
+          )}
+
+          {settingComponent === "subscription" && (
+            <div>
+              {subscriptionData?.map((subscription, index) => (
+                <div key={index}>
+                  <SubscriptionCard subscription={subscription} />
+                </div>
               ))}
             </div>
           )}
