@@ -1,14 +1,24 @@
 
- .ant-pagination-item a,
- .ant-pagination-item:hover a,
- .ant-pagination-item-active a {
-  color: black !important; /* Set the font color to black */
-}
-
-.ant-switch-checked{
-    background-color: green !important;
+.ant-switch-checked {
+  background-color: green !important;
 }
 
 .ant-table-thead .ant-table-cell {
   background-color: white !important;
+}
+
+
+.ant-pagination-item-active a {
+  color: white !important;
+}
+
+.ant-pagination-item-active {
+  background-color: #286FD1 !important;
+  border-radius: 50% !important;
+}
+
+.ant-pagination-item{
+  border: solid 1px #bfb6b6 !important;
+  border-radius: 50% !important;
+  margin: 0px 6px !important;
 }
