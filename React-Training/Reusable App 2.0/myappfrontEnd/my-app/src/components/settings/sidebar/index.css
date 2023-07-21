@@ -1,6 +1,8 @@
 .ant-menu-item {
   border-left: 3px solid transparent;
   border-radius: 0px !important;
+  padding-left: 10px !important;
+  font-weight: bold !important;
 }
 
 .ant-menu-item:hover {

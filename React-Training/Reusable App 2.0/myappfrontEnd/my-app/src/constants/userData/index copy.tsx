@@ -27,7 +27,6 @@ export const Usercolumns: ColumnsType<DataType> = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <a>{text}</a>,
   },
   {
     title: "Email Address",

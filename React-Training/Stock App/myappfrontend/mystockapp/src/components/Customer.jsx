@@ -63,9 +63,8 @@ const MyComponent = () => {
   }, []);
 
   const onFinish = async (values) => {
-    const { customername, stockId, orderqty } = values?.customer;
-    const customerData = {
-      customername,
+    const { customername, stockId, orderqty } = values.customer;
+    const customerData = { customername,
       stockId,
       orderqty,
     };

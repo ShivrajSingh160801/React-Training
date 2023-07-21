@@ -11,6 +11,7 @@ export const IntegrationCardData = [
     buttonText: "Connect to Quickbooks",
     logo: qboLogo,
     ghost: false,
+    backGroundColor : 'green'
   },
   {
     title: "Connect With ZohoBooks",
@@ -28,6 +29,18 @@ export const IntegrationCardData = [
     title: "Connect With Sage",
     buttonText: "Connect",
     logo: sageLogo,
+    ghost: true,
+  },
+  {
+    title: "Connect With ClearBooks",
+    buttonText: "Connect",
+    logo: clearBooksLogo,
+    ghost: true,
+  },
+  {
+    title: "Connect With Business Central",
+    buttonText: "Connect",
+    logo: buisnessCentralLogo,
     ghost: true,
   },
   {

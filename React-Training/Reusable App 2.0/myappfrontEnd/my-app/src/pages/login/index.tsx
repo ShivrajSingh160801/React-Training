@@ -14,6 +14,7 @@ import loginImage from "../../assets/images/Group 23.svg";
 import animalPlanetLogo from "../../assets/images/Mask Group 1/Mask Group 1.png";
 import emailLogo from "../../assets/images/Group 59/Group 59.png";
 import passwordLogo from "../../assets/images/Group 27.svg";
+import xeroLogo from "../../assets/images/Mask Group 27/Mask Group 27.png";
 import { Link } from "react-router-dom";
 import "./index.css";
 
@@ -35,8 +36,14 @@ const Login: React.FC = () => {
           overflowY: "hidden",
         }}
       >
-        <Col xs={24} sm={12} md={9} className="loginImage" style={{ minHeight: "100%" }}>
-          <Image src={loginImage} alt="" />
+        <Col
+          xs={24}
+          sm={12}
+          md={9}
+          className="loginImage"
+          style={{ minHeight: "100%" }}
+        >
+          <Image src={loginImage} preview={false} alt="" width={511} height={520} />
         </Col>
         <Col xs={24} sm={12} md={15}>
           <Row
@@ -88,7 +95,7 @@ const Login: React.FC = () => {
                           {
                             required: true,
                             message: "Please provide Email!",
-                          }
+                          },
                         ]}
                         name="email"
                         label={
@@ -104,7 +111,6 @@ const Login: React.FC = () => {
                         style={{
                           fontSize: "16px",
                         }}
-                      
                       >
                         <Input
                           size="large"
@@ -136,7 +142,6 @@ const Login: React.FC = () => {
                         style={{
                           fontSize: "16px",
                         }}
-                      
                         hasFeedback
                       >
                         <Input.Password
@@ -153,7 +158,7 @@ const Login: React.FC = () => {
                     >
                       Remember me
                     </Checkbox>
-                    <div style={{ marginLeft: "190px" }}>
+                    <div style={{ marginLeft: "150px" }}>
                       <Link to="/forgot-password" target="_blank">
                         <Text type="danger">Forgot Password ?</Text>
                       </Link>
@@ -189,17 +194,28 @@ const Login: React.FC = () => {
                             marginRight: "5px",
                           }}
                         >
-                          Sign in with Intuit
+                          <span  style={{
+                              fontSize: "15px",
+                             
+                            }}>Sign in with Intuit</span>
                         </Button>
                         <Button
                           size="large"
                           style={{
-                            backgroundColor: "#0B78C2",
-                            color: "white",
+                            backgroundColor: "white",
+                            color: "black",
+
                             marginLeft: "5px",
                           }}
                         >
-                          Sign in with Xero
+                          <Image src={xeroLogo}></Image>
+                          <span
+                            style={{
+                              fontSize: "15px",
+                              marginLeft: "5px",
+                            }}
+                          > Sign in with Xero</span>
+                         
                         </Button>
                       </Form.Item>
                     </Col>

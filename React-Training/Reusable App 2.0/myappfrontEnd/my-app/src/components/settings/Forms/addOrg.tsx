@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Col, Form, Input, Row, Space, Typography ,message} from "antd";
 import { LockOutlined, UserOutlined  } from "@ant-design/icons";
+import './org.css'
 
 const { Text } = Typography;
 
@@ -15,7 +16,7 @@ const OrgForm = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   return (
-    <Form form={form} onFinish={onFinish} layout="vertical">
+    <Form className="organization" form={form} onFinish={onFinish} layout="vertical">
       <Row gutter={40}>
         <Col span={24}>
           <Form.Item
@@ -70,7 +71,7 @@ const OrgForm = () => {
           </Form.Item>
         </Col>
       </Row>
-      <Row gutter={16}>
+      <Row gutter={16}  className="btnGrp">
         <Col span={12}>
           <Space>
             <Button type="primary" htmlType="submit">

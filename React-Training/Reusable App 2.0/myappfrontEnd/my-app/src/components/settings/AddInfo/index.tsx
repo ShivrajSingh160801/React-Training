@@ -26,7 +26,7 @@ const AddInfo: FC<AddInfoProps> = (props) => {
     } else if (title === "organizations") {
       return <OrgForm/>;
     } else {
-      return <p>Add Role Form</p>;
+      return <p>dfsdf</p>;
     }
   };
 

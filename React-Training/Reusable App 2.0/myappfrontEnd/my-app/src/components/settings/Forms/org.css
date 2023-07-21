@@ -1,0 +1,12 @@
+.organization{
+    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    height: 100% !important;
+}
+.btnGrp{
+    margin-top: auto !important;
+    /* border: #286FD1 solid 1px; */
+    width: 60% !important;
+    color: #286FD1;
+}

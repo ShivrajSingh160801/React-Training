@@ -3,9 +3,16 @@ import {
     SettingOutlined,
     UsergroupAddOutlined,
   } from '@ant-design/icons';
+  import UserImage from '../../../assets/images/UsersLogo.svg'
+  import OrgImage from '../../../assets/images/OrgPage.svg'
+  import RolesImage from '../../../assets/images/Rolespage.svg'
+  import PreferenceImage from '../../../assets/images/PreferenceP.svg'
+  import IntegrationImage from '../../../assets/images/IntegrationsPage.svg'
+  import SubscriptionImage from '../../../assets/images/Subscription.svg'
+
   import type { MenuProps } from 'antd';
   import { Button, Layout, Menu } from 'antd';
-  import styles from './index.module.css';
+  import styles from './index.module.scss';
   import { SidebarProps } from './types';
   import './index.css';
   
@@ -20,39 +27,32 @@ import {
     const items2: MenuProps['items'] = [
       {
         key: 'users',
-        icon: <UsergroupAddOutlined />,
+        icon:<img src={UserImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Users',
       },
       {
         key: 'organizations',
-        icon: <UsergroupAddOutlined />,
+        icon:<img src={OrgImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Organization',
-        // children: [
-        //   {
-        //     key: 'sidebar-items-2',
-        //     icon: <UsergroupAddOutlined />,
-        //     label: 'Organization',
-        //   },
-        // ],
       },
       {
         key: 'roles',
-        icon: <UsergroupAddOutlined />,
+        icon: <img src={RolesImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Roles',
       },
       {
         key: 'integrations',
-        icon: <UsergroupAddOutlined />,
+        icon:<img src={IntegrationImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Integrations',
       },
       {
         key: 'preference',
-        icon: <SettingOutlined />,
+        icon: <img src={PreferenceImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Preference',
       },
       {
         key: 'subscription',
-        icon: <MoneyCollectOutlined />,
+        icon:<img src={SubscriptionImage} alt="Users" className={styles.sidebar__icon} />,
         label: 'Subscription',
       },
     ];

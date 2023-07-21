@@ -1,40 +1,47 @@
 import React from "react";
 import { Col, Row, Image, Typography, Form, Input, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import loginImage from "../../assets/images/Group 23.svg";
+import registerImage from "../../assets/images/RegisterImage/Group 87.png";
 import animalPlanetLogo from "../../assets/images/Mask Group 1/Mask Group 1.png";
 import userLogo from "../../assets/images/Group 57/Group 57.png";
 import emailLogo from "../../assets/images/Group 59/Group 59.png";
+import xeroLogo from "../../assets/images/Mask Group 27/Mask Group 27.png";
 import phoneLogo from "../../assets/images/phone_in_talk_FILL0_wght400_GRAD0_opsz48/phone_in_talk_FILL0_wght400_GRAD0_opsz48.png";
 import passwordLogo from "../../assets/images/Group 27.svg";
 
 import "./index.css";
+import { Link } from "react-router-dom";
 
-const { Title } = Typography;
+const { Title } = Typography; 
 
 const Register: React.FC = () => {
   const [form] = useForm(); // Declare the 'form' variable using 'useForm' hook
 
   return (
     <>
-      <Row>
-        <Col xs={24} sm={12} md={9} className="loginImage">
-          <Image src={loginImage} alt="" />
+      <Row
+        style={{
+          minHeight: "100vh",
+        }}
+      >
+        <Col xs={24} sm={12} md={9} className="loginImage" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <Image src={registerImage} alt="" preview={false} style={{width:'90%'}}/>
         </Col>
         <Col xs={24} sm={12} md={15}>
           <Row
             className="registerForm"
-            gutter={[0, 40]}
+            gutter={[0, 15]}
             style={{
-              marginTop: "80px",
-              marginLeft: "100px",
+              paddingLeft: "100px",
             }}
           >
             <Col xs={24} sm={24} md={24}>
               <Image
                 src={animalPlanetLogo}
                 alt=""
-                style={{ float: "left", marginRight: "10px" }}
+                style={{
+                  paddingTop: "15px",
+                }}
               />
             </Col>
             <Col xs={24} sm={24} md={24}>
@@ -57,8 +64,14 @@ const Register: React.FC = () => {
                   Register
                 </p>
                 <Form form={form} layout="vertical" autoComplete="off">
-                  <Row gutter={[40, 0]}>
-                    <Col xs={24} sm={9}>
+                  <Row>
+                    <Col
+                      xs={24}
+                      sm={9}
+                      style={{
+                        marginRight: "25px",
+                      }}
+                    >
                       <Form.Item
                         name="firstName"
                         label={
@@ -117,8 +130,14 @@ const Register: React.FC = () => {
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Row gutter={[40, 0]}>
-                    <Col xs={24} sm={9}>
+                  <Row>
+                    <Col
+                      xs={24}
+                      sm={9}
+                      style={{
+                        marginRight: "25px",
+                      }}
+                    >
                       <Form.Item
                         name="email"
                         rules={[
@@ -180,8 +199,14 @@ const Register: React.FC = () => {
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Row gutter={[40, 0]}>
-                    <Col xs={24} sm={9}>
+                  <Row>
+                    <Col
+                      xs={24}
+                      sm={9}
+                      style={{
+                        marginRight: "25px",
+                      }}
+                    >
                       <Form.Item
                         name="password"
                         rules={[
@@ -257,21 +282,21 @@ const Register: React.FC = () => {
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Row gutter={[40, 0]}>
-                    <Col xs={24} sm={9} md={18}>
+                  <Row>
+                    <Col xs={24} sm={9} md={19}>
                       <Form.Item>
                         <Button
                           type="primary"
                           htmlType="submit"
                           size="large"
-                          style={{ width: "100%" }}
+                          style={{ width: "99%" }}
                         >
                           Register
                         </Button>
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Row gutter={[40, 0]}>
+                  <Row>
                     <Col md={12} offset={4} xs={24} sm={9}>
                       <Form.Item>
                         <Button
@@ -281,36 +306,51 @@ const Register: React.FC = () => {
                             marginRight: "5px",
                           }}
                         >
-                          Sign in with Intuit
+                           <span style={{
+                          fontSize:"14px",
+                         }}>Sign in with Intuit</span>
+                          
                         </Button>
                         <Button
                           size="large"
                           style={{
-                            backgroundColor: "#0B78C2",
-                            color: "white",
+                            backgroundColor: "white",
+                            color: "black",
                             marginLeft: "5px",
                           }}
                         >
-                          Sign in with Xero
+                          <Image src={xeroLogo}></Image>
+                         <span style={{
+                          fontSize:"14px",
+                          marginLeft: "5px",
+                         }}>Sign in with Xero</span> 
                         </Button>
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Row gutter={[40, 0]}>
+                  <Row>
                     <Col
                       style={{
                         display: "flex",
                       }}
                     >
                       <Form.Item>
-                        <Button type="text" block>
-                          Already have an account?
-                          <span>
-                            <Button type="link" block>
-                              Login Now!
-                            </Button>
-                          </span>
-                        </Button>
+                        <Link to="/">
+                          <Button type="text" block>
+                            Already have an account?
+                            <span>
+                              <Button
+                                type="link"
+                                block
+                                style={{
+                                  padding: "0px",
+                                }}
+                              >
+                                Login Now!
+                              </Button>
+                            </span>
+                          </Button>
+                        </Link>
                       </Form.Item>
                     </Col>
                   </Row>

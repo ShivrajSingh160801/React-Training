@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { Modal, Button, Form, Input, InputNumber, Table, Space } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { notification } from "antd";
@@ -34,7 +34,7 @@ const MyComponent = () => {
   };
 
   const onFinish = async (values) => {
-    let { stockname, quantity } = values?.stock;
+    let { stockname, quantity } = values.stock;
     const stockordered = 0;
   
     // Check if stock with similar name already exists

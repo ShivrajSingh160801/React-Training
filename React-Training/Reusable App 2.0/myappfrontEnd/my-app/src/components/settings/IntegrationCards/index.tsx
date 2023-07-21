@@ -8,7 +8,7 @@ export default function IntegrationCard(props: any) {
       <Image preview={false} src={props?.logo} />
       <p className={styles.integration__card__company}>Company:</p>
       <p style={{ paddingBottom: '10px' }}>{props?.title}</p>
-      <Button type="primary" ghost={props?.ghost}>
+      <Button type="primary" ghost={props?.ghost} style={{backgroundColor : `${props?.backGroundColor}`}}>
         {props?.buttonText}
       </Button>
     </Card>

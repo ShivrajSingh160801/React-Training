@@ -1,5 +1,5 @@
 import React from "react";
-import { Space, Table, Switch, Button } from "antd";
+import { Space, Table, Switch, Button , Drawer } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import {
   DeleteOutlined,
@@ -9,7 +9,7 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 
-export interface DataType {
+export interface RolesDataType {
   key: string;
   roleName: string;
   description: string;
@@ -18,11 +18,14 @@ export interface DataType {
   action: string;
 }
 
-export const Rolescolumns: ColumnsType<DataType> = [
+
+
+export const Rolescolumns: ColumnsType<RolesDataType> = [
   {
     title: "Role Name",
     dataIndex: "roleName",
     key: "roleName",
+    sorter: (a, b) => a.roleName.localeCompare(b.roleName), 
   },
   {
     title: "Description",
@@ -110,11 +113,11 @@ export const Rolescolumns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [];
+const data: RolesDataType[] = [];
 
 
 for (let i = 1; i <= 10; i++) {
-  const entry: DataType = {
+  const entry: RolesDataType = {
     key: `key${i}`,
     roleName: `Role ${i}`,
     description: `Hello this is the description of the Role ${i}`,
@@ -126,4 +129,4 @@ for (let i = 1; i <= 10; i++) {
   data.push(entry);
 }
 
-export const RolesData: DataType[] = data;
+export const RolesData: RolesDataType[] = data;
