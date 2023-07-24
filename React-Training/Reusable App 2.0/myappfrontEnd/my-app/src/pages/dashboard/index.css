@@ -1,0 +1,53 @@
+.contentText {
+    text-align: center !important;
+    font-size: 33px !important;
+    opacity: 0.5 !important;
+    font-weight: bold !important;
+}
+
+.contentMain {
+    max-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.logoutIcon {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-inline: 15px;
+}
+
+.myProfileText {
+    padding: 0px;
+    margin: 0px;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.currentUser {
+    padding: 0px;
+    margin: 0px !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.Imagediv {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.avatarText {
+    color: black;
+    font-weight: bolder;
+    opacity: 100%;
+}
+
+.dashboardTitle {
+    margin-left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}

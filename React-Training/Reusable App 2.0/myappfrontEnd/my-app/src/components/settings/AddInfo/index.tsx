@@ -5,6 +5,7 @@ import { FC, useState } from "react";
 import { AddInfoProps } from "./types";
 import UserForm from "../Forms/addUser";
 import OrgForm from "../Forms/addOrg";
+import RoleForm from "../Forms/addRole";
 
 const { Title, Link } = Typography;
 
@@ -26,7 +27,7 @@ const AddInfo: FC<AddInfoProps> = (props) => {
     } else if (title === "organizations") {
       return <OrgForm/>;
     } else {
-      return <p>dfsdf</p>;
+      return <RoleForm></RoleForm>;
     }
   };
 

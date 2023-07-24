@@ -30,7 +30,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Row
+      <Row 
         style={{
           overflowX: "hidden",
           overflowY: "hidden",
@@ -127,7 +127,7 @@ const Login: React.FC = () => {
                           {
                             required: true,
                             message: "Please input your Password!",
-                          },
+                                                      },
                         ]}
                         label={
                           <span>

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  LoginOutlined,
   LogoutOutlined,
   UploadOutlined,
   UserOutlined,
@@ -20,7 +21,7 @@ import animalPlanetLogo from "../../assets/images/Screenshot_2023-07-19_131133__
 import settingLogo from "../../assets/images/Setting.svg";
 import Title from "antd/es/typography/Title";
 import Paragraph from "antd/es/typography/Paragraph";
-import "./index.scss";
+import "./index.css";
 import { Link } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -34,23 +35,13 @@ const App: React.FC = () => {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
+        onBreakpoint={(broken) => {}}
+        onCollapse={(collapsed, type) => {}}
         style={{ background: "#286FD1", minHeight: "100vh" }} // Add this line to set the background color to blue
       >
         <div className="demo-logo-vertical" />
         <Menu theme="dark" mode="inline" />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding:"15px"
-          }}
-        >
+        <div className="Imagediv">
           <Image
             src={animalPlanetLogo}
             alt=""
@@ -64,43 +55,25 @@ const App: React.FC = () => {
           <Row justify={"space-between"}>
             <Col>
               {" "}
-              <span
-                style={{
-                  marginLeft: "10px",
-                  fontSize: "22px",
-                  fontWeight: "bold",
-                }}
-              >
-                Dashboard
-              </span>{" "}
+              <span className="dashboardTitle">Dashboard</span>{" "}
             </Col>
             <Col style={{ marginRight: "10px" }}>
               <Row>
                 <Space size={20}>
                   <Col md={24}>
                     <Link to={"/settings"}>
-                    <Image src={settingLogo} preview={false} />
+                      <Image src={settingLogo} preview={false} />
                     </Link>
-                   
                   </Col>
                   <Col md={24}>
                     <Avatar
                       style={{
                         backgroundColor: "#1677ff4a",
                         verticalAlign: "center",
-                  
                       }}
                       size="large"
                     >
-                      <span
-                        style={{
-                          color: "black",
-                          fontWeight: "bolder",
-                          opacity:"100%"
-                        }}
-                      >
-                        TP
-                      </span>
+                      <span className="avatarText">TP</span>
                     </Avatar>
                   </Col>
                   <Col
@@ -111,38 +84,17 @@ const App: React.FC = () => {
                     }}
                   >
                     <div>
-                      <Paragraph
-                        style={{
-                          padding: "0px",
-                          margin: "0px",
-                          fontSize: "14px",
-                          fontWeight: "bold",
-                        }}
-                      >
+                      <Paragraph className="currentUser">
                         Thomas Peterson
                       </Paragraph>
-                      <Paragraph
-                        style={{
-                          padding: "0px",
-                          margin: "0px",
-                          fontSize: "11px",
-                          opacity: "0.8",
-                        }}
-                      >
+                      <Paragraph className="myProfileText">
                         My Profile
                       </Paragraph>
                     </div>
                   </Col>
                   <Col md={24}>
-                    <Link to={'/'}>
-                    <LogoutOutlined
-                      style={{
-                        fontSize: "25px",
-                        display: "flex",
-                        alignItems: "center",
-                        color :"black"
-                      }}
-                    ></LogoutOutlined>
+                    <Link to={"/"}>
+                      <LoginOutlined className="logoutIcon"></LoginOutlined>
                     </Link>
                   </Col>
                 </Space>
@@ -150,22 +102,8 @@ const App: React.FC = () => {
             </Col>
           </Row>
         </Header>
-        <Content
-          style={{
-            maxHeight: "100vh",
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              fontSize: "33px",
-              opacity: "0.5",
-              fontWeight: "bold",
-            }}
-          >
+        <Content className="contentMain">
+          <div className="contentText">
             Dashboard Screen will <br></br> be Coming Soon!
           </div>
         </Content>
